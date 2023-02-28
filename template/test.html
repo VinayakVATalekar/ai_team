@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dropdown</title>
+</head>
+<body>
+<center>   
+ 
+<p >select list of order columns  </p>
+    <select id="aaa" name="columns" method="GET" action="/" size="6" multiple>
+                {% for colour in columns[0:] %}
+          <option value="{{colour}}">{{colour}}</option>
+        {% endfor %}
+      </select>
+      <button onclick="getSelectValues()">Show selected values</button>
+
+
+      <br>
+<p >select list of drop columns  </p>
+    <script > </script>
+
+    <select id="bbb" name="columns" method="GET" action="/"  size="6" multiple>
+      {% for colour in columns[0:] %}
+<option value="{{colour}}">{{colour}}</option>
+{% endfor %}
+</select>
+<button onclick="getSelect()">Show selected values</button></br>
+<br>
+<p >select a target variable  </p>
+
+</br><select id="ccc" name="columns" method="GET" action="/"  >
+  {% for colour in columns[0:] %}
+<option value="{{colour}}">{{colour}}</option>
+{% endfor %}
+</select>
+<button onclick="getSel()">Show selected values</button>
+
+<br> <p >Hold down the Ctrl (windows) /
+  Command (Mac) button to select multiple options.</p> <br>
+       
+	</center>
+</body>
+</html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+<script>
+ 
+    function getSelectValues() {
+ var arr=[];
+   var options = document.getElementById('aaa').selectedOptions;
+var ord_clm = Array.from(options).map(({ value }) => value);
+// var x=document.getElementById("abc").innerHTML=ord_clm;
+var i=0;
+arr.push(ord_clm);
+const s=JSON.stringify({ord_clm});
+ 
+console.log(s);
+window.alert(s)
+$.ajax({
+  url:"/collect",
+  type:"post",
+  contentType:"application/json",
+  data:JSON.stringify(s)
+});
+
+}
+function getSelect() {
+ var arr=[];
+   var options = document.getElementById('bbb').selectedOptions;
+   var del_clm = Array.from(options).map(({ value }) => value);
+   const s=JSON.stringify({del_clm});
+ 
+console.log(s);
+window.alert(s)
+$.ajax({
+  url:"/collect1",
+  type:"post",
+  contentType:"application/json",
+  data:JSON.stringify(s)
+});
+
+}
+
+function getSel() {
+ var arr=[];
+   var options = document.getElementById('ccc').selectedOptions;
+   var target = Array.from(options).map(({ value }) => value);
+   const s=JSON.stringify({target});
+ 
+console.log(s);
+window.alert(s)
+$.ajax({
+  url:"/collect2",
+  type:"post",
+  contentType:"application/json",
+  data:JSON.stringify(s)
+});
+
+}
+
+
+
+</script>
+<script language="JavaScript">
+  function showInput() {
+      document.getElementById('display').innerHTML = 
+                  document.getElementById("user_input").value;
+  }
+</script>
+
+
