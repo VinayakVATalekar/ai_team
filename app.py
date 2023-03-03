@@ -6,7 +6,7 @@ import os
 from werkzeug.utils import secure_filename
 from mongo import *
 from additional import *
-from Attrition_Module import main
+from from temporary_probability_addiiton_hrsuite import main 
 #import papermill as pm
 
 UPLOAD_FOLDER = os.path.join('staticFiles', 'uploads')
